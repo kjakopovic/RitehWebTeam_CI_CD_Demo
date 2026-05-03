@@ -21,6 +21,6 @@ export { app };
 
 runMigrations().then(() => {
   app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT} - production build`);
+    console.log(`Server running on port ${PORT}`);
   });
 });
