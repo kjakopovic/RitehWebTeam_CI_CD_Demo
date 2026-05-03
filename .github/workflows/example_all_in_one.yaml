@@ -1,10 +1,16 @@
-# name: CI/CD
+name: CI/CD
 
-# on:
-#   push:
-#     branches: [main]
+on:
+  push:
+    branches: [main]
 
-# jobs:
+jobs:
+  empty:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Empty job
+        run: echo "This is an empty job. Uncomment the test and deploy jobs to enable CI/CD."
+
 #   test:
 #     runs-on: ubuntu-latest
 #     defaults:
