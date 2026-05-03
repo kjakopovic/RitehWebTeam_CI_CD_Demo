@@ -1,0 +1,30 @@
+name: Deploy (reusable)
+
+on:
+  workflow_call:    # reusable
+    secrets:
+      SSH_PRIVATE_KEY:
+        required: true
+      SERVER_IP:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      # On the server, we configured new linux user deploy that can access only our defined
+      # script deploy.sh. 
+      # This is a simple security measure to prevent potential abuse of the SSH key if it gets compromised.
+      # show what it looks like: 
+      # nano /home/deploy/.ssh/authorized_keys
+      # nano /home/deploy/deploy.sh
+      - name: Deploy to server
+        run: ssh deploy@${{ secrets.SERVER_IP }}
