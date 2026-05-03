@@ -10,7 +10,7 @@ export async function runMigrations(): Promise<void> {
       password: process.env.DB_PASSWORD || "postgres",
       database: process.env.DB_NAME || "projects_db",
     },
-    dir: path.resolve(__dirname, "../migrations"),
+    dir: path.resolve(__dirname, "../../migrations"),
     direction: "up",
     migrationsTable: "pgmigrations",
     log: console.log,
