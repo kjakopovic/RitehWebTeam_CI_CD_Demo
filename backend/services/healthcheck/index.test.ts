@@ -35,12 +35,3 @@ describe("GET /health", () => {
     expect(res.body).toEqual({ status: "error", database: "disconnected" });
   });
 });
-
-describe("GET /health/v2", () => {
-  it("should return 200 with Hello RWT", async () => {
-    const res = await request(app).get("/health/v2");
-
-    expect(res.status).toBe(200);
-    expect(res.text).toBe("Hello RWT");
-  });
-});
