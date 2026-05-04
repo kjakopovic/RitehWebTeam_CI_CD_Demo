@@ -50,7 +50,7 @@ router.get("/health", async (_req, res) => {
  *               example: Hello RWT
  */
 router.get("/health/v2", (_req, res) => {
-  res.status(200).send("Hello RWT");
+  res.status(200).json({ status: "ok", message: "hello RWT" });
 });
 
 export default router;
