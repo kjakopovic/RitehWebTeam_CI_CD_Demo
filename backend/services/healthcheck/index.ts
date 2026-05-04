@@ -35,4 +35,22 @@ router.get("/health", async (_req, res) => {
   }
 });
 
+/**
+ * @openapi
+ * /health/v2:
+ *   get:
+ *     summary: Healthcheck v2
+ *     responses:
+ *       200:
+ *         description: Hello RWT
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               example: Hello RWT
+ */
+router.get("/health/v2", (_req, res) => {
+  res.status(200).json({ status: "ok", message: "hello RWT" });
+});
+
 export default router;
